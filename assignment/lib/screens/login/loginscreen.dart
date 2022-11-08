@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:hexcolor/hexcolor.dart';
-
 import '../../componants/componant.dart';
+import '../../componants/constunt.dart';
 import '../../dio_helper/cashe_helper.dart';
-import 'home.dart';
+import '../home.dart';
 import 'login cubit/lodin_status.dart';
 import 'login cubit/lodingcubit.dart';
 
@@ -23,16 +23,20 @@ class Login_Screen extends StatelessWidget {
       child: BlocConsumer<Cubitlogin, LoginStates>(
         listener: (context, state) {
           // if (state is LoginSuccess) {
-          //   if (state.loginmodel.status == true) {
+          //   if (state.loginmodel.status) {
+
+          //     token = state.loginmodel.data!.token ?? "";
           //     CacheHelper.savedata(
-          //             key: "token", value: state.loginmodel.apiToken)
+          //             key: "token", value: state.loginmodel.data!.token)
           //         .then((value) {
-          //      // finash_navigate(context, HomeScreen());
-          //      // token = state.loginmodel.apiToken;
+          //       token = state.loginmodel.data!.token ?? "";
+          //       finash_navigate(context, const HomeScreen());
           //     });
+
+          //     fluttertost(state.loginmodel.message, toststate.Success);
           //   } else {
-          //     // fluttertost("These credentials do not match our records.",
-          //     //     toststate.Error);
+          //     print(state.loginmodel.message);
+          //     fluttertost(state.loginmodel.message, toststate.Error);
           //   }
           // }
         },
@@ -63,6 +67,9 @@ class Login_Screen extends StatelessWidget {
                                   color: HexColor("#4A4A4A"),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 50)),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Container(
                             decoration: BoxDecoration(
                                 color: Colors.white60,
@@ -90,7 +97,7 @@ class Login_Screen extends StatelessWidget {
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(25.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.grey,
                                         ),
                                       ),
@@ -118,33 +125,27 @@ class Login_Screen extends StatelessWidget {
                                     height: 20,
                                   ),
                                   TextFormField(
+                                    obscureText: true,
                                     controller: pass_controller,
                                     decoration: InputDecoration(
-                                        labelText: "Password",
-                                        fillColor: Colors.white,
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                          borderSide: BorderSide(
-                                            color: Colors.grey,
-                                          ),
+                                      labelText: "Password",
+                                      fillColor: Colors.white,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        borderSide: const BorderSide(
+                                          color: Colors.grey,
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                          borderSide: const BorderSide(
-                                            color: Colors.white,
-                                            //  width: 2.0,
-                                          ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        borderSide: const BorderSide(
+                                          color: Colors.white,
+                                          //  width: 2.0,
                                         ),
-                                        suffixIcon: IconButton(
-                                            onPressed: () {
-                                              Cubitlogin.get(context)
-                                                  .changepassicon();
-                                            },
-                                            icon: Icon(Cubitlogin.get(context)
-                                                .passicon))),
-                                    obscureText: Cubitlogin.get(context).ispass,
+                                      ),
+                                    ),
                                     keyboardType: TextInputType.text,
                                     validator: (val) {
                                       if (val!.isEmpty) {
@@ -174,7 +175,7 @@ class Login_Screen extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(10)),
-                                                    height: 60,
+                                                    height: 45,
                                                     child: const Center(
                                                         child: Text(
                                                       "SUBMIT",
@@ -185,24 +186,19 @@ class Login_Screen extends StatelessWidget {
                                                           fontSize: 18),
                                                     ))),
                                                 onTap: () {
-                                                  navigateto(context,
-                                                      const HomeScreen());
                                                   if (formkey.currentState!
                                                       .validate()) {
-                                                    Cubitlogin.get(context)
-                                                        .userlogin(
-                                                            email:
-                                                                email_controller
-                                                                    .text,
-                                                            pass:
-                                                                pass_controller
-                                                                    .text);
-                                                    //   // finash_navigate(
-                                                    //   //     context, SocialLayout());
+                                                    // Cubitlogin.get(context)
+                                                    //     .userlogin(
+                                                    //         email:
+                                                    //             email_controller
+                                                    //                 .text,
+                                                    //         pass:
+                                                    //             pass_controller
+                                                    //                 .text);
+                                                    finash_navigate(
+                                                        context, HomeScreen());
                                                   }
-
-                                                  // finash_navigate(
-                                                  //     context, SocialLayout());
                                                 },
                                               );
                                             },

@@ -13,15 +13,6 @@ void finash_navigate(context, widgit) {
       MaterialPageRoute(builder: (context) => widgit), (route) => false);
 }
 
-// void finesh(context, widget) {
-//   Navigator.pushReplacement(
-//     context,
-//     MaterialPageRoute<void>(
-//       builder: (BuildContext context) => widget,
-//     ),
-//   );
-// }
-
 void fluttertost(msg, toststate state) {
   Fluttertoast.showToast(
       msg: msg,
@@ -68,69 +59,9 @@ Widget myDivider() => Padding(
       ),
     );
 
-Widget textfeild(controller, label, prefixicon, type, validate, {onchang}) {
-  return TextFormField(
-    controller: controller,
-    decoration: InputDecoration(
-      labelText: label,
-      prefixIcon: prefixicon,
-      border: const OutlineInputBorder(),
-    ),
-    keyboardType: type,
-    validator: validate,
-    onChanged: onchang,
-  );
-}
-
-Widget defaultButton(
-    {required String? text,
-    required function,
-    bool isuppercase = true,
-    color,
-    radius = 5.0,
-    required context}) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(radius),
-      color: color ?? Theme.of(context).primaryColor,
-    ),
-    height: 40,
-    width: double.infinity,
-    child: MaterialButton(
-      child: Text(
-        isuppercase ? text!.toUpperCase() : text!,
-        style: const TextStyle(color: Colors.white),
-        textAlign: TextAlign.center,
-      ),
-      onPressed: function,
-    ),
-  );
-}
-
 Future navigateto(context, widget) {
   return Navigator.push(
       context, MaterialPageRoute(builder: (context) => widget));
-}
-
-// AppBar appbar({title, context, List<Widget>? actions}) {
-//   return AppBar(
-//     titleSpacing: 0.0,
-//     title: Text(title),
-//     leading: IconButton(
-//       onPressed: () {
-//         Navigator.pop(context);
-//       },
-//       icon: const Icon(IconBroken.Arrow___Left_2),
-//     ),
-//     actions: actions,
-//   );
-// }
-
-////////////////////////////////////////////////////////////////////////componant Tools App
-
-datetime(String date) {
-  var time = DateFormat("MMM d, yyyy").format(DateTime.parse(date));
-  return time;
 }
 
 Widget buttonElevated({function, text, image, required Color color}) {
@@ -153,21 +84,10 @@ Widget buttonElevated({function, text, image, required Color color}) {
                   fontSize: 20)),
         ],
       ),
-
       style: ElevatedButton.styleFrom(
           minimumSize: const Size(184, 65),
           backgroundColor: color,
           shape: const StadiumBorder()),
-
-      // ButtonStyle(
-      //   backgroundColor: MaterialStateProperty.all<Color>(color),
-      //   shape: MaterialStateProperty.all(
-      //     RoundedRectangleBorder(
-      //       // Change your radius here
-      //       borderRadius: BorderRadius.circular(16),
-      //     ),
-      //   ),
-      // ),
     ),
   );
 }

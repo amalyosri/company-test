@@ -12,14 +12,7 @@ class PhotoCubit extends Cubit<PhotoStates> {
 
   static PhotoCubit get(context) => BlocProvider.of(context);
 
-  late List<File?> images = [];
-
-  void addgalleryimages() {
-    images.add(galleryImage!);
-
-    emit(AddImagesState());
-  }
-
+  late List images = [];
 
   File? galleryImage;
   var gallerypicker = ImagePicker();
@@ -31,6 +24,7 @@ class PhotoCubit extends Cubit<PhotoStates> {
 
     if (PickedFile != null) {
       galleryImage = File(gallery!.path);
+      images.add(galleryImage);
       emit(GetGalleryImageSuccessState());
     } else {
       print('No image selected.');
@@ -48,11 +42,11 @@ class PhotoCubit extends Cubit<PhotoStates> {
 
     if (PickedFile != null) {
       cameraImage = File(camera!.path);
+      images.add(cameraImage);
       emit(GetCameraImageSuccessState());
     } else {
       print('No image selected.');
       emit(GetCameraImageErrorState());
     }
   }
-
 }

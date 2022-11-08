@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:assignment/componants/constunt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -9,6 +10,8 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../componants/componant.dart';
 import '../../cubit/tools_cubit.dart';
 import '../../cubit/tools_state.dart';
+import '../dio_helper/cashe_helper.dart';
+import 'login/loginscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                   "assets/images/gellary3.png",
                   width: double.infinity,
                   height: double.infinity,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 const Align(
                   alignment: AlignmentDirectional(0.9, -0.93),
@@ -61,7 +64,14 @@ class HomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              CacheHelper.removedata("token").then((value) {
+                                if (value == true) {
+                                  finash_navigate(context, Login_Screen());
+                                  //token = "";
+                                }
+                              });
+                            },
                             child: Row(
                               children: [
                                 Image.asset(
@@ -103,8 +113,6 @@ class HomeScreen extends StatelessWidget {
                                             function: () {
                                               PhotoCubit.get(context)
                                                   .getgalleryImage();
-                                              PhotoCubit.get(context)
-                                                  .addgalleryimages();
                                             },
                                             color: HexColor("#EFD8F9")),
                                         const SizedBox(
@@ -116,8 +124,6 @@ class HomeScreen extends StatelessWidget {
                                             function: () {
                                               PhotoCubit.get(context)
                                                   .getcameraImage();
-                                              PhotoCubit.get(context)
-                                                  .addcamerimages();
                                             },
                                             color: HexColor("#EBF6FF"))
                                       ],
@@ -177,8 +183,9 @@ class HomeScreen extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: FileImage(PhotoCubit.get(context).images[index]!)
-                      as ImageProvider,
+                  image: FileImage(PhotoCubit.get(context).images[index]),
+
+                  /// as ImageProvider,
                   fit: BoxFit.cover,
                 ),
                 borderRadius: const BorderRadius.all(

@@ -1,4 +1,4 @@
-import '../../../model/login.dart';
+import '../../../model/logins.dart';
 
 abstract class LoginStates {}
 
@@ -15,5 +15,3 @@ class LoginError extends LoginStates {
   String error;
   LoginError(this.error);
 }
-
-class ChangepassIconState extends LoginStates {}

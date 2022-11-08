@@ -3,10 +3,11 @@ import 'package:assignment/cubit/tools_state.dart';
 import 'package:assignment/screens/login/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'componants/constunt.dart';
 import 'cubit/bloc_observer.dart';
 import 'dio_helper/cashe_helper.dart';
 import 'dio_helper/dio_helper.dart';
+import 'screens/home.dart';
 import 'style/themes.dart';
 
 void main() async {
@@ -18,19 +19,15 @@ void main() async {
       await CacheHelper.init();
 
       Widget widget1;
-      // bool? onboarding = CacheHelper.getDate(key: "onboarding");
-      // token = CacheHelper.getDate(key: "token");
+
+      // token = CacheHelper.getDate(key: "token") ?? "";
 
       // print(token);
-      // // if (onboarding != null) {
+      // // // if (onboarding != null) {
       // if (token != null) {
       //   widget1 = HomeScreen();
       // } else {
       //   widget1 = Login_Screen();
-      // }
-      // }
-      // else {
-      //   widget1 = story();
       // }
 
       runApp(MyApp());
@@ -40,8 +37,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // Widget widget1;
-  // MyApp(this.widget1, {super.key});
+  // Widget widget;
+  // MyApp(this.widget, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +53,10 @@ class MyApp extends StatelessWidget {
                 theme: lightTheme,
                 themeMode: ThemeMode.light,
                 home: SafeArea(
-                  child: Login_Screen(),
+                  child: Login_Screen(), // widget,
+
                   top: true,
-                )
-                //Login_Screen(),
-                );
+                ));
           },
         ));
   }

@@ -1,27 +1,17 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../componants/endpoint.dart';
 import '../../../dio_helper/dio_helper.dart';
 
-import '../../../model/login.dart';
+import '../../../model/logins.dart';
 import 'lodin_status.dart';
 
 class Cubitlogin extends Cubit<LoginStates> {
   Cubitlogin() : super(LoginInitial());
 
   static Cubitlogin get(context) => BlocProvider.of(context);
-  IconData passicon = Icons.visibility_outlined;
-  bool ispass = true;
-
-  void changepassicon() {
-    ispass = !ispass;
-    passicon =
-        ispass ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    emit(ChangepassIconState());
-  }
 
   late LoginModel loginmodel;
 

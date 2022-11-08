@@ -20,10 +20,6 @@ class PhotoCubit extends Cubit<PhotoStates> {
     emit(AddImagesState());
   }
 
-  void addcamerimages() {
-    images.add(cameraImage!);
-    emit(AddImagesState());
-  }
 
   File? galleryImage;
   var gallerypicker = ImagePicker();
@@ -58,27 +54,5 @@ class PhotoCubit extends Cubit<PhotoStates> {
       emit(GetCameraImageErrorState());
     }
   }
-////////////////////////////////////////////////////////////////////
 
-  File? postImage;
-  //var postpicker = ImagePicker();
-  File? camerapost;
-  Future<void> getPostImage() async {
-    final postgallery = await gallerypicker.pickImage(
-      source: ImageSource.gallery,
-    );
-
-    final postcamera = await camerapicker.pickImage(
-      source: ImageSource.camera,
-    );
-
-    if (PickedFile != null) {
-      postImage = File(postgallery!.path);
-      camerapost = File(postcamera!.path);
-      emit(PostImageSuccessState());
-    } else {
-      print('No image selected.');
-      emit(GetGalleryImageErrorState());
-    }
-  }
 }

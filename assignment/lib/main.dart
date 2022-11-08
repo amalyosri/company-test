@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, sort_child_properties_last, must_be_immutable
-
 import 'package:assignment/cubit/tools_cubit.dart';
 import 'package:assignment/cubit/tools_state.dart';
 import 'package:assignment/screens/login/loginscreen.dart';
